@@ -1,23 +1,27 @@
 import { useState } from "react";
 import UserController from "../../controller/UserController";
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
-    const [username,setUsername] = useState('');
-    const [password,setPassword] = useState('');
-    let userData ={
-        'username':username,
-        'password':password
+    const [user,setUser] = useState({
+        username:"",
+        password:""
+    });
+  
+    const navigate = useNavigate();
+    const onChangeUser  = (e:any) =>{
+        const value = e.target.value;
+        setUser(({
+            ...user,
+            [e.target.name]: value
+          }))
     }
-    const onUsernameChange = (e:any) =>{
-        setUsername(e.target.value)
-    }
-    const onPasswordChange = (e:any) =>{
-        setPassword(e.target.value)
-    }
+  
     const login = (e:any)=>{
         e.preventDefault();
-        UserController.login(userData);
+        UserController.login(user,navigate)
+        
         
     }
     return (
@@ -27,14 +31,14 @@ function Login() {
             <form onSubmit={login}>
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Username</label>
-                    <input type="name" id="username" className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your username"
-                    value={username} onChange={onUsernameChange} required>
+                    <input type="name" id="username" name="username" className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your username"
+                    value={user.username} onChange={onChangeUser} required>
                     </input>
                 </div>
                 <div className="mb-4">
                     <label  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label>
-                    <input type="password" id="password" className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your password" 
-                    value={password} onChange={onPasswordChange} required>
+                    <input type="password" id="password" name="password" className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your password" 
+                    value={user.password} onChange={onChangeUser} required>
                     </input>
                   
                 </div>

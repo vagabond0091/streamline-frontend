@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './view/User'
+import Index from './components/asd'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="login" element={<Login/>}/>
+          <Route path="/index" element={<Index/>}/>
         </Routes>
       </BrowserRouter>
     
