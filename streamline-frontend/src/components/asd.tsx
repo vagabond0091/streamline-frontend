@@ -4,7 +4,7 @@
 function Index() {
  
     return (
-        <div>
+        <div className="h-screen">
             <h1>asdasdasd</h1>
     </div>
     

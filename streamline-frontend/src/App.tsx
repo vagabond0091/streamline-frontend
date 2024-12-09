@@ -5,6 +5,8 @@ import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './view/User'
 import Index from './components/asd'
+import Footer from './components/footer/footer'
+import Header from './components/header/header'
 
 function App() {
 
@@ -13,10 +15,12 @@ function App() {
       <div>
           {/* <h1 className='text-4xl text-blue-400'>asdasd</h1> */}
       <BrowserRouter>
+        {/* <Header/> */}
         <Routes>
           <Route path="login" element={<Login/>}/>
           <Route path="/index" element={<Index/>}/>
         </Routes>
+        {/* <Footer/> */}
       </BrowserRouter>
     
       </div>
