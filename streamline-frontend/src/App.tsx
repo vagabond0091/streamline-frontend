@@ -15,12 +15,12 @@ function App() {
       <div>
           {/* <h1 className='text-4xl text-blue-400'>asdasd</h1> */}
       <BrowserRouter>
-        {/* <Header/> */}
+        <Header/>
         <Routes>
           <Route path="login" element={<Login/>}/>
           <Route path="/index" element={<Index/>}/>
         </Routes>
-        {/* <Footer/> */}
+        <Footer/>
       </BrowserRouter>
     
       </div>

@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import CookieSerive from "../service/CookieService";
 import UserService from "../service/UserService"
 
@@ -10,8 +9,11 @@ const UserController = {
         
         UserService.userLogin(user).then((response: any) => {
             // add the token in the cookies.
-           if(response.staus === 200){
-                CookieSerive.setToken(response.data,1);
+           if(response.status === 200){
+                if(CookieSerive.getToken() == "" || CookieSerive.getToken() == "undefined"){
+                    CookieSerive.setToken(response.data,1);
+                }
+               
                 navigate('/index')
            }
            
