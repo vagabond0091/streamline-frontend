@@ -4,9 +4,10 @@ import viteLogo from '/vite.svg'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './view/User'
-import Index from './components/asd'
 import Footer from './components/footer/footer'
-import Header from './components/header/header'
+
+import Main from './components/main/Main'
+import Navbar from './components/navigation/Navbar'
 
 function App() {
 
@@ -15,12 +16,17 @@ function App() {
       <div>
           {/* <h1 className='text-4xl text-blue-400'>asdasd</h1> */}
       <BrowserRouter>
-        <Header/>
-        <Routes>
+        {/* <Header/> */}
+        <div className='flex'>
+          <Navbar/>
+          <Main/>
+        </div>
+        
+        {/* <Routes>
           <Route path="login" element={<Login/>}/>
           <Route path="/index" element={<Index/>}/>
-        </Routes>
-        <Footer/>
+        </Routes> */}
+        {/* <Footer/> */}
       </BrowserRouter>
     
       </div>

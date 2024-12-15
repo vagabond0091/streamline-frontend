@@ -1,0 +1,7 @@
+.list-main .activeClass{
+    color:white;
+    background-color:#16a34a;
+    svg{
+        color:white
+    }
+}
