@@ -1,32 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './view/User'
-import Footer from './components/footer/footer'
-
-import Main from './components/main/Main'
-import Navbar from './components/navigation/Navbar'
+import LandingPage from './view/LandingPage'
+import Product from './view/Product'
 
 function App() {
 
   return (
     <>
       <div>
-          {/* <h1 className='text-4xl text-blue-400'>asdasd</h1> */}
       <BrowserRouter>
-        {/* <Header/> */}
-        <div className='flex'>
-          <Navbar/>
-          <Main/>
-        </div>
-        
-        {/* <Routes>
+        <Routes>
           <Route path="login" element={<Login/>}/>
-          <Route path="/index" element={<Index/>}/>
-        </Routes> */}
-        {/* <Footer/> */}
+          <Route path="/" element={<LandingPage/>}/>
+          <Route path="/products" element={<Product/>}/>
+          <Route path="/product/:id" element={<Product/>}/>
+        </Routes>
       </BrowserRouter>
     
       </div>

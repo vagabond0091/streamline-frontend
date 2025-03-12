@@ -6,8 +6,8 @@ import Login from '../components/user/Login';
 
   return (
     <div>
-      <Login/>
+      <h2>Hello</h2>
     </div>
   )
 }
-export default Login;
+export default UserView;
