@@ -1,5 +1,5 @@
 import { ChangeEvent, SetStateAction, useState } from "react";
-import { UploadCloud, XCircle } from "lucide-react";
+import { UploadCloud, X } from "lucide-react";
 import { Editor } from "@tinymce/tinymce-react";
 
 type ImagePositions = "front" | "back" | "left" | "right";
@@ -98,7 +98,7 @@ function AddProductView() {
                                             className="w-full h-full object-cover rounded-lg border border-gray-300"
                                         />
                                         
-                                        <XCircle 
+                                        <X 
                                             size={24} 
                                             className="absolute top-2 right-2 text-red-500 cursor-pointer" 
                                             onClick={() => removeImage(position)}
