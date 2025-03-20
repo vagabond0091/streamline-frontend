@@ -1,6 +1,5 @@
 import assets from '../../assets/laptopbanner.jpg'
 function BannerWithImage(props: any){
-    console.log(props.left);
     return (
        <section className="flex flex-col md:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden mx-4 mt-6">
             {props.left ?

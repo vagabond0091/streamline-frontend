@@ -18,7 +18,6 @@ function Product(){
       { id: 6, name: "Kawaii Hoodie", price: "$169.99", image: assets, category: "Women" },
       { id: 7, name: "Furoshiki Wrap", price: "$179.99", image: assets, category: "Accessories" },
       { id: 8, name: "Geta Wooden Clogs", price: "$189.99", image: assets, category: "Footwear" },
-      
       { id: 9, name: "Kimono Jacket", price: "$119.99", image: assets, category: "Men" },
       { id: 10, name: "Sakura Dress", price: "$129.99", image: assets, category: "Women" },
       { id: 11, name: "Origami Necklace", price: "$139.99",image: assets, category: "Accessories" },
@@ -61,20 +60,20 @@ function Product(){
                 {displayedProducts.length > 0 ? (
                 displayedProducts.map((product) => (
                    
-                        <div key={product.id} className="bg-gray-100 shadow-lg rounded-lg overflow-hidden h-full md:h-80">
-                           <Link to={`/product/${product.id}`} className="block">
-                                <img src={product.image} alt={product.name} className="w-full h-40 object-cover" />
-                                <div className="p-4 text-left">
-                                <h5 className="text-lg font-bold text-gray-900">{product.name}</h5>
-                                <p className="text-gray-700 mb-3">{product.price}</p>
-                                </div>
-                            </Link>
-                            <div className="p-4">
-                                <button className="px-3 py-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center text-sm">
-                                Add to Cart
-                                </button>
-                            </div>
-                        </div>
+                    <div key={product.id} className="bg-gray-100 shadow-lg rounded-lg overflow-hidden h-full md:h-80">
+                    <Link to={`/product/${product.id}`} className="block">
+                      <img src={product.image} alt={product.name} className="w-full h-40 object-cover" />
+                    </Link>
+                    <div className="p-4 text-left">
+                      <h5 className="text-lg font-bold text-gray-900">{product.name}</h5>
+                      <p className="text-gray-700 mb-3">{product.price}</p>
+                    </div>
+                    <div className="p-4">
+                      <button className="px-3 py-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center text-sm">
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
                     
                     
                 ))

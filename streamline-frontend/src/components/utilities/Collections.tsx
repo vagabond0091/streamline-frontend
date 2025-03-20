@@ -1,5 +1,5 @@
 import assets from '../../assets/laptopbanner.jpg'
-function Collection (){
+function Collection (props:any){
     
     const collections = [
         { id: 1, name: "New Arrival 1", price: "$119.99", image: assets },
@@ -9,7 +9,15 @@ function Collection (){
       ];
     return (
         <section className="mx-4 mt-10">
+            { props.isFromProductView ? <>
+                <h2 className="text-3xl font-bold text-gray-900  mb-6">{props.productViewText}</h2>
+            </> :
+            <>
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-6">Shop by Collection</h2>
+            </>
+                
+            }
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {collections.map((collection) => (
                 <div key={collection.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
