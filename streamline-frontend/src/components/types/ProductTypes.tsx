@@ -1,7 +1,7 @@
 export interface ProductData {
-    name: string;
+    title: string;
     description: string;
-    price: number;
-    quantity: number;
+    price: string;
+    quantity: string;
     images: Record<string, string | null>;
 }
