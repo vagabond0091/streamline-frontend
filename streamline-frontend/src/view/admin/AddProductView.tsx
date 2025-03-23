@@ -5,6 +5,7 @@ import ProductController from "../../controller/ProductController";
 import { useDispatch } from "react-redux";
 import { setErrors, clearErrors } from "../../redux/ErrorSlice";
 import ErrorMessage from "../../components/utilities/ErrorMessage";
+import { toast } from "react-hot-toast";
 type ImagePositions = "front" | "back" | "left" | "right";
 
 function AddProductView(this: any) {
@@ -112,8 +113,7 @@ function AddProductView(this: any) {
                         className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500" 
                         required 
                     />
-                      <ErrorMessage field="quantity" />
-                   <ErrorMessage field="internalServerERR" />
+                    <ErrorMessage field="quantity" />
 
                     {/* Image Upload Grid */}
                     <label className="block text-gray-700 font-medium">Product Images</label>
@@ -163,8 +163,13 @@ function AddProductView(this: any) {
                             const validationErrors = await ProductController.createProduct(productData);
                             if (validationErrors) {
                                 dispatch(setErrors(validationErrors));
+                                console.error(validationErrors);
+                                if (validationErrors.internalServerERR) {
+                                    toast.error(validationErrors.internalServerERR);
+                                }
                             } else {
                                 dispatch(clearErrors());
+                                toast.success("Product added successfully!");
                             }
                         }}>
                         Add Product

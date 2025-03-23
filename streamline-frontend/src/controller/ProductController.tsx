@@ -6,7 +6,7 @@ const ProductController = {
     createProduct: async (productData: ProductData):Promise<Record<string, string> | null> => {
 
         try {
-            const price = parseFloat(productData.price); // Convert to number
+            const price = parseFloat(productData.price); 
             const quantity = parseInt(productData.quantity, 10); 
             const rawErrors: Record<string, string | Record<string, string> | null> = {
                 title: ProductValidator.validateName(productData.title || ""),
@@ -18,14 +18,14 @@ const ProductController = {
             const errors = ProductController.flattenErrors(rawErrors)
 
             if (Object.keys(errors).length > 0) {
-                return errors; // Return errors instead of void
+                return errors; 
                 
             }
 
             const response = await ProductService.createProduct(productData);
 
             if (response.status === 200) {
-                return null; // No errors, success
+                return null; 
             } else {
                 return { internalServerERR: "Unexpected response from server." };
             }
