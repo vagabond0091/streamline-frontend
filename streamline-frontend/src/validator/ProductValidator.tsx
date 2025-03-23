@@ -26,7 +26,7 @@ export const ProductValidator = {
         const errors: Record<string, string> = {};
 
         if (Object.values(images).every(image => !image)) {
-            return { general: "At least one product image is required." };
+            return { front: "At least one product image is required." };
         }
 
         Object.entries(images).forEach(([key, value]) => {
