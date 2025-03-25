@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import errorReducer from "./ErrorSlice"; // Import reducers here
+import errorReducer from "./ErrorSlice"; 
 
 const store = configureStore({
     reducer: {
