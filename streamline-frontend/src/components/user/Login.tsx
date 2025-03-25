@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc"; 
+import UserController from "../../controller/UserController";
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
+  
+    const [user, setUser] = useState({
+            username: "",
+            password: "",
+        });
+    
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUser(prev => ({ ...prev, [name]: value }));
+    };
     return (
         <div className="min-h-screen flex items-center justify-center mt-7">
             <div className="bg-white p-8 shadow-lg rounded-lg w-full max-w-md">
@@ -15,11 +23,12 @@ function Login() {
                 <div className="mb-4">
                     <label className="block text-gray-700 font-medium">Email</label>
                     <input 
-                        type="email" 
+                        type="text" 
+                        name="username" 
                         className="w-full p-2 border rounded-lg mt-1 focus:ring-2 focus:ring-purple-500" 
                         placeholder="Enter your email"
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={user.username} 
+                        onChange={handleChange}
                     />
                 </div>
 
@@ -27,11 +36,12 @@ function Login() {
                 <div className="mb-4">
                     <label className="block text-gray-700 font-medium">Password</label>
                     <input 
+                        name="password" 
                         type="password" 
                         className="w-full p-2 border rounded-lg mt-1 focus:ring-2 focus:ring-purple-500" 
                         placeholder="Enter your password"
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={user.password} 
+                        onChange={handleChange}
                     />
                 </div>
 
@@ -43,7 +53,9 @@ function Login() {
                     <Link to="/forgot-password" className="text-black text-sm hover:underline">Forgot password?</Link>
                 </div>
 
-                <button className="w-full  bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition  p-2 ">
+                <button className="w-full  bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition  p-2 " onClick={() =>{
+                    UserController.login(user);
+                }}>
                     Login
                 </button>
 
