@@ -5,16 +5,18 @@ import UserService from "../service/UserService"
 
 const UserController = {
     
-    login: (user: any, navigate: Function):void  => {
+    login: (user: any):void  => {
         
         UserService.userLogin(user).then((response: any) => {
             // add the token in the cookies.
+            console.log(response);
            if(response.status === 200){
                 if(CookieSerive.getToken() == "" || CookieSerive.getToken() == "undefined"){
                     CookieSerive.setToken(response.data,1);
                 }
                
-                navigate('/index')
+               
+              
            }
            
         })

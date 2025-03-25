@@ -1,11 +1,10 @@
 import axios from "axios";
-
-const BASE_URL = "http://127.0.0.1:8080/api/v1/auth"
+import API from "./API";
 
 const UserService = {
    
-    userLogin: async (user:any) => await axios.post( BASE_URL + "/login",user),
-    userRegister: async (user:any) => await axios.post(BASE_URL + "/register",user),
+    userLogin: async (user:any) => await API.post("/login",user),
+    userRegister: async (user:any) => await axios.post("/register",user),
 
 }
 export default UserService
