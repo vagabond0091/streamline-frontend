@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 
 const COOKIE_NAME = "token";
 
-const CookieSerive = {
+const CookieService = {
     // Store the token in cookies
     setToken : (token: string, expiresInDays: number = 1): void => {
         Cookies.set(COOKIE_NAME, token, {
@@ -23,4 +23,4 @@ const CookieSerive = {
     },
 }
 
-export default CookieSerive;
+export default CookieService;
