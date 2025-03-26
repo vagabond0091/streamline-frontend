@@ -2,6 +2,7 @@
 import ProductService from "../service/ProductService";
 import { ProductData } from "../types/ProductTypes";
 import { ProductValidator } from "../validator/ProductValidator";
+import CookieService from "../service/CookieService";
 const ProductController = {
     createProduct: async (productData: ProductData):Promise<Record<string, string> | null> => {
 
@@ -21,9 +22,29 @@ const ProductController = {
                 return errors; 
                 
             }
+            // const product = new FormData();
+            // product.append("product", JSON.stringify({ ...productData, images: undefined })); // Exclude images from JSON
 
+          
+            // for (const [key, file] of Object.entries(productData.images)) {
+            //     let processedFile = file;
+
+            //     if (typeof file === "string" && file.startsWith("blob:")) {
+            //         processedFile = ProductController.fetchBlob(file);
+            //     }
+
+            //     if (processedFile instanceof Blob) {
+            //         formData.append("images", processedFile, key);
+            //     }
+            // }
+            const allCookies = CookieService.getToken()
+            if (CookieService.getToken()) {
+                console.log('User is authenticated'+allCookies);
+              } else {
+                console.log(allCookies);
+              }
             const response = await ProductService.createProduct(productData);
-
+            
             if (response.status === 200) {
                 return null; 
             } else {
@@ -34,7 +55,6 @@ const ProductController = {
         
         }
     },
-
     flattenErrors(errors: Record<string, any>): Record<string, string> {
         const flattenedErrors: Record<string, string> = {};
 
@@ -55,3 +75,4 @@ const ProductController = {
 }
 
 export default ProductController
+
