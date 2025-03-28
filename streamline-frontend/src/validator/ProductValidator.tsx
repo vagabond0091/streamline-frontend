@@ -22,7 +22,7 @@ export const ProductValidator = {
         if (quantity < 1) return "Quantity must be at least 1.";
         return null;
     },
-    validateImages(images: Record<string, string | null>): Record<string, string> | null {
+    validateImages(images: Record<string, File|string | null>): Record<string, string> | null {
         const errors: Record<string, string> = {};
 
         if (Object.values(images).every(image => !image)) {
