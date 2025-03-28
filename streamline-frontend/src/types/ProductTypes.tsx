@@ -3,5 +3,5 @@ export interface ProductData {
     description: string;
     price: string;
     quantity: string;
-    images: Record<string, string | null>;
+    images: Record<string, File | string | null>;
 }
