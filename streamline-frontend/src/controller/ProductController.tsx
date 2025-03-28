@@ -2,7 +2,6 @@
 import ProductService from "../service/ProductService";
 import { ProductData } from "../types/ProductTypes";
 import { ProductValidator } from "../validator/ProductValidator";
-import CookieService from "../service/CookieService";
 const ProductController = {
     createProduct: async (productData: ProductData):Promise<Record<string, string> | null> => {
 
@@ -22,28 +21,32 @@ const ProductController = {
                 return errors; 
                 
             }
-            // const product = new FormData();
-            // product.append("product", JSON.stringify({ ...productData, images: undefined })); // Exclude images from JSON
-
-          
-            // for (const [key, file] of Object.entries(productData.images)) {
-            //     let processedFile = file;
-
-            //     if (typeof file === "string" && file.startsWith("blob:")) {
-            //         processedFile = ProductController.fetchBlob(file);
-            //     }
-
-            //     if (processedFile instanceof Blob) {
-            //         formData.append("images", processedFile, key);
-            //     }
-            // }
-            const allCookies = CookieService.getToken()
-            if (CookieService.getToken()) {
-                console.log('User is authenticated'+allCookies);
-              } else {
-                console.log(allCookies);
-              }
-            const response = await ProductService.createProduct(productData);
+            const product = new FormData();
+            product.append("title", productData.title);
+            product.append("description", productData.description);
+            product.append("price", productData.price);
+            product.append("quantity", productData.quantity);
+            const imageEntries = Object.entries(productData.images);
+            if(imageEntries != null){
+                for (const [key, file] of imageEntries) {
+                    if (typeof file === "string" && file.startsWith("blob:")) {
+                        try {
+                            const response = await fetch(file);
+                            const blob = await response.blob();
+                            const fileName = `${key}.jpg`; 
+                            const convertedFile = new File([blob], fileName, { type: blob.type });
+                            product.append(key, convertedFile);
+                        } catch (error) {
+                            console.error(`Error converting blob URL (${key}):`, error);
+                        }
+                    } else if (file instanceof File) {
+                        product.append(key, file);
+                    } else {
+                        console.warn(`Skipping: ${key} is neither a File nor a valid blob URL`, file);
+                    }
+                }
+            }
+            const response = await ProductService.createProduct(product);
             
             if (response.status === 200) {
                 return null; 
@@ -55,6 +58,20 @@ const ProductController = {
         
         }
     },
+    getAllProduct: async () => { 
+        const response = ProductService.getAllProduct()
+        .then((res)=>{
+            
+
+        }).catch((error)=>{
+
+        });
+
+    },
+
+    /*
+    *   Helper method to map the value to its key value pairs.
+    */
     flattenErrors(errors: Record<string, any>): Record<string, string> {
         const flattenedErrors: Record<string, string> = {};
 

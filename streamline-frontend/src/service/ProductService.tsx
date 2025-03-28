@@ -6,8 +6,9 @@ const token = CookieService.getToken()?.trim();
 const ProductService = {
   
     createProduct: async (product:any) => await API.post( "/create",product,{
-        headers: { Authorization: `Bearer ${token}`,"Content-Type": "application/json" },}),
+        headers: { Authorization: `Bearer ${token}`,"Content-Type": "multipart/form-data" },}),
     
-
+    getAllProduct: async () => await API.post( "/getAllProduct",{
+        headers: { Authorization: `Bearer ${token}`,"Content-Type": "application/json" },}),
 }
 export default ProductService
