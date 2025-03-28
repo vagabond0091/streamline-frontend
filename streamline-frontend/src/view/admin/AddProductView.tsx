@@ -44,7 +44,20 @@ function AddProductView(this: any) {
         }));
         
     };
-
+    const resetProductData = ()=>{
+        setProductData({
+            title: "",
+            description: "",
+            price: "",
+            quantity: "",
+            images: {
+                front: null,
+                back: null,
+                left: null,
+                right: null,
+            },
+        });
+    }
    
     return (
         <>
@@ -85,6 +98,7 @@ function AddProductView(this: any) {
                                     "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
                                 tinycomments_mode: "", 
                             }}
+                            value={productData.description}
                             onEditorChange={(content: SetStateAction<string>) => setProductData(prev => ({ ...prev, description: content  as string}))}
                         />
                       
@@ -170,6 +184,7 @@ function AddProductView(this: any) {
                             } else {
                                 dispatch(clearErrors());
                                 toast.success("Product added successfully!");
+                                resetProductData();
                             }
                         }}>
                         Add Product
